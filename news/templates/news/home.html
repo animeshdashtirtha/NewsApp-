@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NewsApp | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'news/css/home.css' %}">
+</head>
+
+
+<body>
+
+    <header>
+        <a href="/" class="logo-link">
+            <img src="{% static 'images/bulletin.png' %}" alt="NewsApp Logo" class="logo">
+        </a>
+    </header>
+
+
+    <div class="page-container">
+
+        <!-- total articles and search button -->
+        <div class="top-bar">
+            <p>Total articles: {{ articles|length }}</p>
+
+            <form method="get" class="search-form">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Search news..."
+                    value="{{ request.GET.q }}"
+                >
+
+                <select name="search_in">
+                    <option value="title"
+                        {% if selected_search_in|default:"title,description,content" == "title" %}selected{% endif %}>
+                        Title
+                    </option>
+
+                    <option value="description"
+                        {% if selected_search_in == "description" %}selected{% endif %}>
+                        Description
+                    </option>
+
+                    <option value="content"
+                        {% if selected_search_in == "content" %}selected{% endif %}>
+                        Content
+                    </option>
+
+                    <option value="title,description"
+                        {% if selected_search_in == "title,description" %}selected{% endif %}>
+                        Title + Description
+                    </option>
+                </select>
+
+                <button type="submit">Search</button>
+            </form>
+
+        </div>
+
+
+        <!-- news cards -->
+        <div class="news-grid">
+            {% for article in articles %}
+                <div class="news-card">
+
+                    <div class="image-wrapper">
+                        {% if article.urlToImage %}
+                            <img src="{{ article.urlToImage }}" alt="News image">
+                        {% else %}
+                            <img src="https://via.placeholder.com/600x400?text=No+Image" alt="No image">
+                        {% endif %}
+                    </div>
+
+
+                    <div class="news-content">
+                        <div class="news-source">
+                            {{ article.source.name }} • {{ article.publishedAt|slice:":10" }}
+                        </div>
+
+                        <h2 class="news-title">
+                            {{ article.title }}
+                        </h2>
+
+                        <p class="news-desc">
+                            {{ article.description|default:"No description available." }}
+                        </p>
+
+                        <div class="news-footer">
+                            <span class="news-date">
+                                {{ article.publishedAt|slice:":10" }}
+                            </span>
+
+                            <a class="read-more" href="{{ article.url }}" target="_blank">
+                                Read more →
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% empty %}
+                <p>No news found.</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+</body>
+</html>

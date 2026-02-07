@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Header  */
+header {
+    background-color: #0f172a;
+    padding: 12px 24px;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo {
+    margin: 8px;
+    height: 36px;
+    width: auto;
+}
+
+/* Layout */
+.page-container {
+    max-width: 1320px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+/* Top Bar  */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.top-bar p {
+    margin: 0;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-form input,
+.search-form select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.search-form input {
+    width: 220px;
+}
+
+.search-form button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #0f172a;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #1e293b;
+}
+
+/*   News Grid  */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+/* News card  */
+.news-card {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+
+/* News image */
+.image-wrapper {
+    width: 100%;
+    height: 220px;
+    background-color: #e5e7eb;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* content */
+.news-content {
+    padding: 16px 18px 18px;
+}
+
+.news-source {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+
+/* News Title */
+.news-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 8px;
+    color: #111827;
+}
+
+/* News Description */
+.news-desc {
+    font-size: 14px;
+    color: #374151;
+    margin: 0 0 14px;
+}
+
+/* News Footer */
+.news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.news-date {
+    color: #6b7280;
+}
+
+.read-more {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+    .page-container {
+        margin: 20px auto;
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 640px) {
+
+    header {
+        padding: 10px 16px;
+    }
+
+    .logo {
+        height: 32px;
+        margin: 4px;
+    }
+
+    /* Stack top bar */
+    .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .top-bar p {
+        font-size: 13px;
+    }
+
+    /* Search form becomes vertical */
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .search-form input,
+    .search-form select,
+    .search-form button {
+        width: 100%;
+    }
+
+    /* Slightly smaller cards */
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .image-wrapper {
+        height: 200px;
+    }
+
+    .news-title {
+        font-size: 16px;
+    }
+
+    .news-desc {
+        font-size: 13px;
+    }
+}
